@@ -4,8 +4,8 @@ const PORT = 3000;
 
 // Rota básica
 app.get('/', (req, res) => {
-    console.log("Hello World");
-    res.send('Hello World');
+    console.log("Hello World"); // Registra "Hello World" no console
+    res.send('Hello World'); // Responde ao cliente
 });
 
 // Inicia o servidor
