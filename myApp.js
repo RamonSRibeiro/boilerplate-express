@@ -1,16 +1,67 @@
 let express = require('express');
+const res = require('express/lib/response');
 let app = express();
-const PORT = 3000;
+//#1
+console.log("Hello World")
+//#2
+//app.get("/", (req, res) => {
+//    res.send("Hello Express")
+//})
 
-// Rota básica
-app.get('/', (req, res) => {
-    console.log("Hello World"); // Registra "Hello World" no console
-    res.send('Hello World'); // Responde ao cliente
-});
+//#4
+app.use("/public", express.static(__dirname + "/public"))
 
-// Inicia o servidor
-app.listen(PORT, () => {
-    console.log(`Servidor rodando em http://localhost:${PORT}`);
-});
+//#3
+app.get("/", (req, res) => {
+    res.sendFile(__dirname + "/views/index.html");
+})
 
-module.exports = app;
+//#5
+//app.get("/json", (req, res) => {
+//    res.json({
+//        "message": "Hello json"
+//    })
+//})
+
+//#6
+app.get("/json", (req, res) => {
+   if ( process.env["MESSAGE_STYLE"] == "uppercase"){
+    res.json({"message": "HELLO JSON"})
+   } else {
+    res.json({"message": "hello json"})
+   }
+  })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ module.exports = app;
